@@ -1,2 +1,1 @@
 // poshol nahuy
-print("work");
