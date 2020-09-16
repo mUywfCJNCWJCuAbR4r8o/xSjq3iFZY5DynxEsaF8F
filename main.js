@@ -1,1 +1,2 @@
 // poshol nahuy
+print("work");
