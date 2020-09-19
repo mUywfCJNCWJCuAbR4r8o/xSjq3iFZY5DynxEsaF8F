@@ -4,7 +4,6 @@ GradientDrawable = android.graphics.drawable.GradientDrawable, parseColor = andr
 TextView = android.widget.TextView, SeekBar = android.widget.SeekBar, LinearLayout = android.widget.LinearLayout, LayoutParams = LinearLayout.LayoutParams, PopupWindow = android.widget.PopupWindow, ScrollView = android.widget.ScrollView,
 File = java.io.File, BufferedReader = java.io.BufferedReader, FileReader = java.io.FileReader,
 fromHtml = android.text.Html.fromHtml;
-let config, core, killaura, print, client;
 
 print = (p0) => {
     ctx.runOnUiThread({
