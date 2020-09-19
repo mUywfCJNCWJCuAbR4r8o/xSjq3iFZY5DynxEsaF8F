@@ -455,7 +455,7 @@ print = (p0) => {
             },
             buttons(){
                 client.thread(() => {
-                    let dp = client.gui.d5ip2px, lp = client.gui.layoutParams;
+                    let dp = client.gui.dip2px, lp = client.gui.layoutParams;
                     let l0 = new LinearLayout(ctx);
                     l0.setOrientation(1);
 
