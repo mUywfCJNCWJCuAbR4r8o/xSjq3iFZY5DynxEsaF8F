@@ -4,6 +4,7 @@ GradientDrawable = android.graphics.drawable.GradientDrawable, parseColor = andr
 TextView = android.widget.TextView, SeekBar = android.widget.SeekBar, LinearLayout = android.widget.LinearLayout, LayoutParams = LinearLayout.LayoutParams, PopupWindow = android.widget.PopupWindow, ScrollView = android.widget.ScrollView,
 File = java.io.File, BufferedReader = java.io.BufferedReader, FileReader = java.io.FileReader,
 fromHtml = android.text.Html.fromHtml;
+let config, core, killaura, print, client;
 
 print = (p0) => {
     ctx.runOnUiThread({
@@ -90,7 +91,7 @@ print = (p0) => {
                 line(l0, l1, l2){
                     let l = new LinearLayout(ctx);
                     l.setLayoutParams(client.gui.layoutParams([l0[0], l0[1]]));
-                    l.setBackgroundColor(parseColor(l1));
+                    l.setBackgroundColor(parseColor("#" + l1));
                     l2.addView(l);
                     return l;
                 }
@@ -221,7 +222,7 @@ print = (p0) => {
                             v_.setGravity(17);
                             l1.addView(v_);
 
-                            client.gui.style.line([-1, dp(1)], "#FF9800", l1).getLayoutParams().setMargins(dp(16), 0, dp(16), 0);
+                            client.gui.style.line([-1, dp(1)], "FF9800", l1).getLayoutParams().setMargins(dp(16), 0, dp(16), 0);
 
                             let l2 = new LinearLayout(ctx);
                             l2.setOrientation(1);
@@ -469,7 +470,7 @@ print = (p0) => {
                     v.setBackgroundColor(parseColor("#191919"));
                     v.setOnClickListener(function(){client.hud.menu()});
                     l1.addView(v);
-                    client.gui.style.line([dp(4), -1], "#FF9800", l1);
+                    client.gui.style.line([dp(4), -1], "FF9800", l1);
                     l0.addView(l1);
 
                     let l2 = new LinearLayout(ctx);
@@ -483,7 +484,7 @@ print = (p0) => {
                     s.setBackgroundColor(parseColor("#191919"));
                     s.setOnClickListener(function(){client.hud.settings()});
                     l2.addView(s);
-                    client.gui.style.line([dp(4), -1], "#FF9800", l2);
+                    client.gui.style.line([dp(4), -1], "FF9800", l2);
 
                     l0.addView(l2);
                     BUTTONS = new PopupWindow(l0, -2, -2);
