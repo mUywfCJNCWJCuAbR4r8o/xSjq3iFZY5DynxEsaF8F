@@ -374,82 +374,86 @@ print = p0 => {
                     return this;
                 },
                 slider(s0, s1, s2){
-                    /*let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
-                    let progress = ("settings." + s0[0]).toLowerCase();
+                    try{
+                        let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
+                        let progress = ("settings." + s0[0]).toLowerCase();
 
-                    if(!config(progress)) config(progress, s1[1]);
+                        if(!config(progress)) config(progress, s1[1]);
 
-                    let l0 = new LinearLayout(ctx);
+                        let l0 = new LinearLayout(ctx);
 
-                    let p = new TextView(ctx);
-                    p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"));
-                    p.setTextSize(1, 10);
-                    p.setTextColor(-1);
-                    p.setLayoutParams(lp([-1, dp(30)], [8, 0, 8, 0]));
-                    p.setPadding(dp(8), dp(4), dp(8), dp(4));
-                    p.setGravity(20);
-                    p.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                    p.setOnClickListener(function(){
-                        l0.removeView(p);
+                        let p = new TextView(ctx);
+                        p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"));
+                        p.setTextSize(1, 10);
+                        p.setTextColor(-1);
+                        p.setLayoutParams(lp([-1, dp(30)], [8, 0, 8, 0]));
+                        p.setPadding(dp(8), dp(4), dp(8), dp(4));
+                        p.setGravity(20);
+                        p.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                        p.setOnClickListener(function(){
+                            l0.removeView(p);
 
-                        let e = new android.widget.EditText(ctx);
-                        e.setInputType(2);
-                        e.setText(config(progress).toString());
-                        e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
-                        e.setHintTextColor(parseColor("#9E9E9E"));
-                        e.setTextSize(1, 10);
-                        e.setTextColor(-1);
-                        e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
-                        e.setPadding(dp(8), dp(8), dp(8), dp(8));
-                        e.setGravity(20);
-                        e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                        l0.addView(e);
+                            let e = new android.widget.EditText(ctx);
+                            e.setInputType(2);
+                            e.setText(config(progress).toString());
+                            e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
+                            e.setHintTextColor(parseColor("#9E9E9E"));
+                            e.setTextSize(1, 10);
+                            e.setTextColor(-1);
+                            e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
+                            e.setPadding(dp(8), dp(8), dp(8), dp(8));
+                            e.setGravity(20);
+                            e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                            l0.addView(e);
 
-                        let v = new TextView(ctx);
-                        v.setText("ok");
-                        v.setTextSize(1, 10);
-                        v.setTextColor(-1);
-                        v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
-                        v.setPadding(dp(16), dp(8), dp(16), dp(8));
-                        v.setGravity(17);
-                        v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                        v.setOnClickListener(function(){
-                            l0.removeView(e);
-                            l0.removeView(v);
-                            l0.addView(p);
-                            s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
+                            let v = new TextView(ctx);
+                            v.setText("ok");
+                            v.setTextSize(1, 10);
+                            v.setTextColor(-1);
+                            v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
+                            v.setPadding(dp(16), dp(8), dp(16), dp(8));
+                            v.setGravity(17);
+                            v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                            v.setOnClickListener(function(){
+                                l0.removeView(e);
+                                l0.removeView(v);
+                                l0.addView(p);
+                                s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
+                            });
+                            l0.addView(v);
+
+                            e.requestFocus();
+                            e.postDelayed({
+                                run(){
+                                    ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
+                                }
+                            });
                         });
-                        l0.addView(v);
+                        l0.addView(p);
 
-                        e.requestFocus();
-                        e.postDelayed({
-                            run(){
-                                ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
-                            }
-                        });
-                    });
-                    l0.addView(p);
+                        let l1 = new LinearLayout(ctx);
+                        l1.setOrientation(1);
 
-                    let l1 = new LinearLayout(ctx);
-                    l1.setOrientation(1);
+                        let thumb = new android.graphics.drawable.ShapeDrawable(new android.graphics.drawable.shapes.RectShape());
+                        thumb.setColorFilter(-1, PorterDuff.Mode.SRC);
+                        thumb.setIntrinsicWidth(25);
+                        thumb.setIntrinsicHeight(50);
 
-                    let thumb = new android.graphics.drawable.ShapeDrawable(new android.graphics.drawable.shapes.RectShape());
-                    thumb.setColorFilter(-1, PorterDuff.Mode.SRC);
-                    thumb.setIntrinsicWidth(25);
-                    thumb.setIntrinsicHeight(50);
+                        let s = new SeekBar(ctx);
+                        android.os.Build.VERSION.SDK_INT >= 26 ? s.setMin(s1[0][0]) : "";
+                        s.setMax(s1[0][1]);
+                        s.setProgress(config(progress));
+                        s.setPadding(dp(10), dp(3), dp(10), dp(3));
+                        s.setThumb(thumb);
+                        s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
+                        s.setOnSeekBarChangeListener({onProgressChanged(o0, o1){p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress, android.os.Build.VERSION.SDK_INT >= 26 ? o1 : o1 <= s1[0][0] ? s1[0][0] : o1) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"))}});
+                        l1.addView(s);
 
-                    let s = new SeekBar(ctx);
-                    android.os.Build.VERSION.SDK_INT >= 26 ? s.setMin(s1[0][0]) : "";
-                    s.setMax(s1[0][1]);
-                    s.setProgress(config(progress));
-                    s.setPadding(dp(10), dp(3), dp(10), dp(3));
-                    s.setThumb(thumb);
-                    s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
-                    s.setOnSeekBarChangeListener({onProgressChanged(o0, o1){p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress, android.os.Build.VERSION.SDK_INT >= 26 ? o1 : o1 <= s1[0][0] ? s1[0][0] : o1) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"))}});
-                    l1.addView(s);
-
-                    s2.addView(l0);
-                    s2.addView(l1);*/
+                        s2.addView(l0);
+                        s2.addView(l1);
+                    }catch(e){
+                        print("Error(" + e.lineNumber + "): " + e.message);
+                    };
                     return this;
                 }
             },
