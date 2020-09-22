@@ -374,7 +374,7 @@ print = p0 => {
                     return this;
                 },
                 slider(s0, s1, s2){
-                    let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
+                    /*let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
                     let progress = ("settings." + s0[0]).toLowerCase();
 
                     if(!config(progress)) config(progress, s1[1]);
@@ -422,11 +422,11 @@ print = p0 => {
                         l0.addView(v);
 
                         e.requestFocus();
-                        /*e.postDelayed({
+                        e.postDelayed({
                             run(){
                                 ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
                             }
-                        });*/
+                        });
                     });
                     l0.addView(p);
 
@@ -449,7 +449,7 @@ print = p0 => {
                     l1.addView(s);
 
                     s2.addView(l0);
-                    s2.addView(l1);
+                    s2.addView(l1);*/
                     return this;
                 }
             },
