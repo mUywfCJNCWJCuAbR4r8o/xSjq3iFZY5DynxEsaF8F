@@ -6,7 +6,7 @@ File = java.io.File, BufferedReader = java.io.BufferedReader, FileReader = java.
 fromHtml = android.text.Html.fromHtml;
 let config, core, killaura, print, client;
 
-print = (p0) => {
+print = p0 => {
     ctx.runOnUiThread({
         run(){
             new android.widget.Toast.makeText(ctx, fromHtml(p0), 1).show();
@@ -37,7 +37,7 @@ print = (p0) => {
             this.file = new File(client.dir + c0 + ".json");
             this.load = () => this.file.exists() ? this.config = JSON.parse(client.file.read(this.file)) : "";
             this.save = () => new java.io.FileOutputStream(this.file).write(new java.lang.String(JSON.stringify(this.config, "", 4)).getBytes());
-            this.set = (s0) => {
+            this.set = s0 => {
                 this.checkAndPlace(this.config, s0);
                 this.save();
                 return this;
