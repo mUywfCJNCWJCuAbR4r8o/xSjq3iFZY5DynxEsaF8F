@@ -527,9 +527,9 @@ print = (p0) => {
                 let l2 = new LinearLayout(ctx);
                 l2.setOrientation(1);
 
-                client.hud.components.module.add("KillAura Combat K", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], (layout, $) => $.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
-                .add("HitBoxes Combat H", !!0, (layout, $) => $.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout), l2)
-                .add("AimBot Combat A", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], (layout, $) => $.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
+                client.hud.components.module.add("KillAura Combat K", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], (layout, $) => /*$.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout)*/{}, l2)
+                .add("HitBoxes Combat H", !!0, (layout, $) => /*$.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout)*/{}, l2)
+                .add("AimBot Combat A", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], (layout, $) => /*$.slider(["aimbot.range", "Range"], [[1, 15], 5], layout)*/{}, l2)
                 .add("HitAim Combat H", !!0, !!0, l2)
                 .add("AntiKnockback Combat", !!0, !!0, l2)
                 .add("HitBoost Combat H", !!0, !!0, l2)
@@ -539,14 +539,14 @@ print = (p0) => {
                 let l3 = new LinearLayout(ctx);
                 l3.setOrientation(1);
 
-                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], (layout, $) => $.slider(["airjump.velocity", "Velocity"], [[1, 5], 1], layout).slider(["airjump.jumppower", "Jump power"], [[1, 3], 1], layout), l3)
+                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], (layout, $) => /*$.slider(["airjump.velocity", "Velocity"], [[1, 5], 1], layout).slider(["airjump.jumppower", "Jump power"], [[1, 3], 1], layout)*/{}, l3)
                 .add("Elevator Motion", [() => client.hud.elevator(), () => ELEVATOR.dismiss()], !!0, l3)
-                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], (layout, $) => $.module.setModeChanger("Flight", ["Vanilla", "Bounce", "Crouch"], layout), l3)
+                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], (layout, $) => /*$.module.setModeChanger("Flight", ["Vanilla", "Bounce", "Crouch"], layout)*/{}, l3)
                 .add("Glide Motion G", !!0, !!0, l3)
-                .add("JetPack Motion J", !!0, (layout, $) => $.module.setModeChanger("JetPack", ["Velocity", "Teleport"], layout), l3)
+                .add("JetPack Motion J", !!0, (layout, $) => /*$.module.setModeChanger("JetPack", ["Velocity", "Teleport"], layout)*/{}, l3)
                 .add("AirSpeed Motion A", !!0, !!0, l3)
-                .add("Tower Motion T", !!0, (layout, $) => $.module.setModeChanger("Tower", ["Velocity", "Teleport"], layout).slider(["tower.powerlevel", "Power level"], [[1, 3], 1], layout), l3)
-                .add("Scaffold Motion S", !!0, (layout, $) => $.module.setModeChanger("Scaffold", ["Velocity", "Teleport"], layout), l3)
+                .add("Tower Motion T", !!0, (layout, $) => /*$.module.setModeChanger("Tower", ["Velocity", "Teleport"], layout).slider(["tower.powerlevel", "Power level"], [[1, 3], 1], layout)*/{}, l3)
+                .add("Scaffold Motion S", !!0, (layout, $) => /*$.module.setModeChanger("Scaffold", ["Velocity", "Teleport"], layout)*/{}, l3)
                 .add("HighJump Motion", [!!0, () => Entity.removeEffect(getPlayerEnt(), 8)], !!0, l3)
                 .add("AntiGravity Motion A", !!0, !!0, l3);
 
@@ -556,14 +556,14 @@ print = (p0) => {
                 client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
                 .add("FastBreak Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 3)], !!0, l4)
                 .add("FullBright Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 16)], !!0, l4)
-                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], (layout, $) => $.slider(["fasteat.speed", "Speed"], [[2, 20], 2], layout), l4)
+                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], (layout, $) => /*$.slider(["fasteat.speed", "Speed"], [[2, 20], 2], layout)*/{}, l4)
                 .add("TapTp Player T", !!0, !!0, l4)
                 .add("SafeWalk Player", !!0, !!0, l4)
-                .add("ChangeFov Player C", !!0, (layout, $) => $.slider(["changefov.fov", "Fov"], [[20, 150], parseInt(client.optionsMCPE.get("gfx_field_of_view")) + 10], layout), l4)
-                .add("Nuker Player N", !!0, (layout, $) => $.slider(["nuker.delay", "Delay"], [[1, 5], 1], layout), l4)
-                .add("DestroyView Player D", !!0, (layout, $) => $.slider(["destroyview.delay", "Delay"], [[1, 5], 1], layout), l4)
+                .add("ChangeFov Player C", !!0, (layout, $) => /*$.slider(["changefov.fov", "Fov"], [[20, 150], parseInt(client.optionsMCPE.get("gfx_field_of_view")) + 10], layout)*/{}, l4)
+                .add("Nuker Player N", !!0, (layout, $) => /*$.slider(["nuker.delay", "Delay"], [[1, 5], 1], layout)*/{}, l4)
+                .add("DestroyView Player D", !!0, (layout, $) => /*$.slider(["destroyview.delay", "Delay"], [[1, 5], 1], layout)*/{}, l4)
                 .add("NoBadEffects Player", !!0, !!0, l4)
-                .add("AntiAFK Player", !!0, (layout, $) => $.slider(["antiafk.delay", "Delay (in seconds)"], [[1, 60], 5], layout), l4);
+                .add("AntiAFK Player", !!0, (layout, $) => /*$.slider(["antiafk.delay", "Delay (in seconds)"], [[1, 60], 5], layout)*/{}, l4);
 
                 l0.addView(s0);
                 GUI = new PopupWindow(l0, -2, -1, !0);
@@ -594,6 +594,8 @@ print = (p0) => {
 
                 client.hud.components.button("Restart game", () => client.restartGame(), l2)
                 .button("Set random name", () => client.optionsMCPE.edit("mp_username", client.utils.text.randomLetters(16)), l2);
+
+
 
                 l0.addView(s0);
                 s0.addView(l2);
