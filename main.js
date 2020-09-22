@@ -442,7 +442,7 @@ print = p0 => {
                         let s = new SeekBar(ctx);
                         android.os.Build.VERSION.SDK_INT >= 26 ? s.setMin(s1[0][0]) : "";
                         s.setMax(s1[0][1]);
-                        s.setProgress(config(progress));
+                        s.setProgress(parseInt(config(progress)));
                         s.setPadding(dp(10), dp(3), dp(10), dp(3));
                         s.setThumb(thumb);
                         s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
