@@ -76,7 +76,7 @@ print = p0 => {
                 background(b0, b1, b2, b3){
                     let b = new GradientDrawable();
                     if(!!b0) b.setColor(b0);
-                    if(!!b1) b.setStroke(client.gui.dip2px(b1[0]), b1[1]);
+                    if(!!b1) b.setStroke(client.gui.dip2px(b1[0]), b1[1], client.gui.dip2px(1), client.gui.dip2px(1));
                     if(!!b2) b.setAlpha(b2);
                     if(!!b3) b.setCornerRadii([b3[0], b3[0], b3[1], b3[1], b3[2], b3[2], b3[3], b3[3]]);
                     return b;
