@@ -382,7 +382,7 @@ print = p0 => {
 
                         let l0 = new LinearLayout(ctx);
 
-                        let p = new TextView(ctx);
+                        let p = new TextView(ctx), e = new android.widget.EditText(ctx), v = new TextView(ctx);
                         p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"));
                         p.setTextSize(1, 10);
                         p.setTextColor(-1);
@@ -393,7 +393,6 @@ print = p0 => {
                         p.setOnClickListener(function(){
                             l0.removeView(p);
 
-                            let e = new android.widget.EditText(ctx);
                             e.setInputType(2);
                             e.setText(config(progress).toString());
                             e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
@@ -406,7 +405,6 @@ print = p0 => {
                             e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
                             l0.addView(e);
 
-                            let v = new TextView(ctx);
                             v.setText("ok");
                             v.setTextSize(1, 10);
                             v.setTextColor(-1);
@@ -446,7 +444,10 @@ print = p0 => {
                         s.setPadding(dp(10), dp(3), dp(10), dp(3));
                         s.setThumb(thumb);
                         s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
-                        s.setOnSeekBarChangeListener({onProgressChanged(o0, o1){p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress, android.os.Build.VERSION.SDK_INT >= 26 ? o1 : o1 <= s1[0][0] ? s1[0][0] : o1) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"))}});
+                        s.setOnSeekBarChangeListener({onProgressChanged(o0, o1){
+                            p.setText(fromHtml(s0[1] + ": <font color=#FF9800>" + config(progress, android.os.Build.VERSION.SDK_INT >= 26 ? o1 : o1 <= s1[0][0] ? s1[0][0] : o1) + "</font> / <font color=#FF9800>" + s1[0][1] + "</font>"));
+                            e.setText(config(progress).toString());
+                        }});
                         l1.addView(s);
 
                         s2.addView(l0);
