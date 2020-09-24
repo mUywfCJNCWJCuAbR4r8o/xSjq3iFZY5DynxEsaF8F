@@ -374,7 +374,7 @@ print = p0 => {
                     return this;
                 },
                 slider(s0, s1, s2){
-                    try{
+                    /*try{*/
                         let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
                         let progress = ("settings." + s0[0]).toLowerCase();
 
@@ -451,9 +451,9 @@ print = p0 => {
 
                         s2.addView(l0);
                         s2.addView(l1);
-                    }catch(e){
+                    /*}catch(e){
                         print("Error(" + e.lineNumber + "): " + e.message);
-                    };
+                    };*/
                     return this;
                 }
             },
