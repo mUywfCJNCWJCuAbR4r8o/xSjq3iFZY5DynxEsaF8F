@@ -76,7 +76,7 @@ print = p0 => {
                 background(b0, b1, b2, b3){
                     let b = new GradientDrawable();
                     if(!!b0) b.setColor(b0);
-                    if(!!b1) b.setStroke(client.gui.dip2px(b1[0]), b1[1], client.gui.dip2px(.5), client.gui.dip2px(1));
+                    if(!!b1) b.setStroke(client.gui.dip2px(b1[0]), b1[1]);
                     if(!!b2) b.setAlpha(b2);
                     if(!!b3) b.setCornerRadii([b3[0], b3[0], b3[1], b3[1], b3[2], b3[2], b3[3], b3[3]]);
                     return b;
@@ -422,12 +422,12 @@ print = p0 => {
                             });
                             l0.addView(v);
 
-                            e.requestFocus();
+                            /*e.requestFocus();
                             e.postDelayed({
                                 run(){
                                     ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
                                 }
-                            });
+                            });*/
                         });
                         l0.addView(p);
 
@@ -442,7 +442,7 @@ print = p0 => {
                         let s = new SeekBar(ctx);
                         android.os.Build.VERSION.SDK_INT >= 26 ? s.setMin(s1[0][0]) : "";
                         s.setMax(s1[0][1]);
-                        s.setProgress(/*parseInt(*/config(progress))/*)*/;
+                        s.setProgress(parseInt(config(progress)));
                         s.setPadding(dp(10), dp(3), dp(10), dp(3));
                         s.setThumb(thumb);
                         s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
