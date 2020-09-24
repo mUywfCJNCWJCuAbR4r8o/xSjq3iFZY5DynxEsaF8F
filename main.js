@@ -374,7 +374,6 @@ print = p0 => {
                     return this;
                 },
                 slider(s0, s1, s2){
-                    try{
                         let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
                         let progress = ("settings." + s0[0]).toLowerCase();
 
@@ -391,41 +390,45 @@ print = p0 => {
                         p.setGravity(20);
                         p.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
                         p.setOnClickListener(function(){
-                            l0.removeView(p);
+                            try{
+                                l0.removeView(p);
 
-                            e.setInputType(2);
-                            e.setText(config(progress).toString());
-                            e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
-                            e.setHintTextColor(parseColor("#9E9E9E"));
-                            e.setTextSize(1, 10);
-                            e.setTextColor(-1);
-                            e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
-                            e.setPadding(dp(8), dp(8), dp(8), dp(8));
-                            e.setGravity(20);
-                            e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                            l0.addView(e);
+                                e.setInputType(2);
+                                e.setText(config(progress).toString());
+                                e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
+                                e.setHintTextColor(parseColor("#9E9E9E"));
+                                e.setTextSize(1, 10);
+                                e.setTextColor(-1);
+                                e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
+                                e.setPadding(dp(8), dp(8), dp(8), dp(8));
+                                e.setGravity(20);
+                                e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                                l0.addView(e);
 
-                            v.setText("ok");
-                            v.setTextSize(1, 10);
-                            v.setTextColor(-1);
-                            v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
-                            v.setPadding(dp(16), dp(8), dp(16), dp(8));
-                            v.setGravity(17);
-                            v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                            v.setOnClickListener(function(){
-                                l0.removeView(e);
-                                l0.removeView(v);
-                                l0.addView(p);
-                                s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
-                            });
-                            l0.addView(v);
+                                v.setText("ok");
+                                v.setTextSize(1, 10);
+                                v.setTextColor(-1);
+                                v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
+                                v.setPadding(dp(16), dp(8), dp(16), dp(8));
+                                v.setGravity(17);
+                                v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                                v.setOnClickListener(function(){
+                                    l0.removeView(e);
+                                    l0.removeView(v);
+                                    l0.addView(p);
+                                    s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
+                                });
+                                l0.addView(v);
 
-                            e.requestFocus();
-                            /*e.postDelayed({
-                                run(){
-                                    ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
-                                }
-                            });*/
+                                e.requestFocus();
+                                e.postDelayed({
+                                    run(){
+                                        ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
+                                    }
+                                });
+                            }catch(e){
+                                print("Error(" + e.lineNumber + "): " + e.message);
+                            };
                         });
                         l0.addView(p);
 
@@ -452,9 +455,6 @@ print = p0 => {
 
                         s2.addView(l0);
                         s2.addView(l1);
-                    }catch(e){
-                        print("Error(" + e.lineNumber + "): " + e.message);
-                    };
                     return this;
                 }
             },
