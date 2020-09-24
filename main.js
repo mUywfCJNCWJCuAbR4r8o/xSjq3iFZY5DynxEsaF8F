@@ -374,7 +374,7 @@ print = p0 => {
                     return this;
                 },
                 slider(s0, s1, s2){
-                    /*try{*/
+                    try{
                         let dp = client.gui.dip2px, lp = client.gui.layoutParams, background = client.gui.style.background;
                         let progress = ("settings." + s0[0]).toLowerCase();
 
@@ -442,7 +442,7 @@ print = p0 => {
                         let s = new SeekBar(ctx);
                         android.os.Build.VERSION.SDK_INT >= 26 ? s.setMin(s1[0][0]) : "";
                         s.setMax(s1[0][1]);
-                        s.setProgress(parseInt(config(progress)));
+                        s.setProgress(/*parseInt(*/config(progress))/*)*/;
                         s.setPadding(dp(10), dp(3), dp(10), dp(3));
                         s.setThumb(thumb);
                         s.setProgressTintList(new android.content.res.ColorStateList.valueOf(parseColor("#FF9800")));
@@ -451,9 +451,9 @@ print = p0 => {
 
                         s2.addView(l0);
                         s2.addView(l1);
-                    /*}catch(e){
+                    }catch(e){
                         print("Error(" + e.lineNumber + "): " + e.message);
-                    };*/
+                    };
                     return this;
                 }
             },
