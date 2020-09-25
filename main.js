@@ -426,8 +426,8 @@ print = p0 => {
                                         ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
                                     }
                                 });
-                            }catch(e){
-                                print("Error(" + e.lineNumber + "): " + e.message);
+                            }catch(ee){
+                                print("Error(" + ee.lineNumber + "): " + ee.message);
                             };
                         });
                         l0.addView(p);
