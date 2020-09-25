@@ -426,8 +426,8 @@ print = p0 => {
                                         ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
                                     }
                                 });*/
-                            }catch(ee){
-                                print("Error(" + ee.lineNumber + "): " + ee.message);
+                            }catch(e){
+                                print("Error(" + e.lineNumber + "): " + e.message);
                             };
                         });
                         l0.addView(p);
@@ -600,8 +600,12 @@ print = p0 => {
                 client.hud.components.button("Restart game", () => client.restartGame(), l2)
                 .button("Set random name", () => client.optionsMCPE.edit("mp_username", client.utils.text.randomLetters(16)), l2);
 
-                let buttons = new File(client.dir + "buttons/").listFiles();
-                for(let i in buttons) client.hud.components.buttons(buttons[i].isDirectory() ? buttons[i].getName() : "???", eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
+                try{
+                    let buttons = new File(client.dir + "buttons/").listFiles();
+                    for(let i in buttons) client.hud.components.buttons(buttons[i].isDirectory() ? buttons[i].getName() : "???", eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
+                }catch(e){
+                    print("Error(" + e.lineNumber + "): " + e.message);
+                };
 
                 l0.addView(s0);
                 s0.addView(l2);
