@@ -602,7 +602,7 @@ print = p0 => {
 
                 try{
                     let buttons = new File(client.dir + "buttons/").listFiles();
-                    for(let i in buttons) client.hud.components.buttons(buttons[i].isDirectory() ? buttons[i].getName() : "???", () => eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
+                    for(let i in buttons) client.hud.components.button(buttons[i].isDirectory() ? buttons[i].getName() : "???", () => eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
                 }catch(e){
                     print("Error(" + e.lineNumber + "): " + e.message);
                 };
