@@ -421,11 +421,11 @@ print = p0 => {
                                 l0.addView(v);
 
                                 e.requestFocus();
-                                e.postDelayed({
+                                /*e.postDelayed({
                                     run(){
                                         ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
                                     }
-                                });
+                                });*/
                             }catch(ee){
                                 print("Error(" + ee.lineNumber + "): " + ee.message);
                             };
