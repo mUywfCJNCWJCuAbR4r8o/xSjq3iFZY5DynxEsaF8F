@@ -601,7 +601,7 @@ print = p0 => {
                 .button("Set random name", () => client.optionsMCPE.edit("mp_username", client.utils.text.randomLetters(16)), l2);
 
                 let buttons = new File(client.dir + "buttons/").listFiles();
-                for(let i in buttons) client.hud.combat.buttons(buttons[i].isDirectory() ? buttons[i].getName() : "???", eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
+                for(let i in buttons) client.hud.components.buttons(buttons[i].isDirectory() ? buttons[i].getName() : "???", eval(client.file.read(client.dir + "buttons/" + buttons[i].getName() + "/onClick.js")), l2);
 
                 l0.addView(s0);
                 s0.addView(l2);
