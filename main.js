@@ -180,7 +180,11 @@ print = p0 => {
                         });
                         if(!!a2){
                             l2.addView(s);
-                            a2(l3);
+                            // a2(l3);
+                            for(let i in a2){
+                                if(a2[i].type == "ModeChanger") client.hud.components.module.setModeChanger(a0[0], a2[i].modes, l3);
+                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + a2[i].type.split(" - ")[1], a2[i].type.split(" - ")[2]], [[a2[i].progress.min, a2[i].progress.max], a2[i].progress.default], l3);
+                            };
                         };
 
                         l0.addView(l1);
@@ -532,19 +536,39 @@ print = p0 => {
                 let l2 = new LinearLayout(ctx);
                 l2.setOrientation(1);
 
-                client.hud.components.module.add("KillAura Combat K", !!0, layout => client.hud.components.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
-                .add("HitBoxes Combat H", !!0, layout => client.hud.components.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout), l2)
-                .add("AimBot Combat A", !!0, layout => client.hud.components.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
+                client.hud.components.module//.add("KillAura Combat K", !!0, layout => client.hud.components.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
+
+                //.add("HitBoxes Combat H", !!0, layout => client.hud.components.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout), l2)
+                .add("HitBoxes Combat H", !!0, [{
+                    "type": "ModeChanger",
+                    "modes": ["Pointed", "Auto"]
+                }, {
+                    "type": "slider - width - Width",
+                    "progress": {
+                        "min": 2,
+                        "max": 20,
+                        "default": 10
+                    } // or "progress": [[2, 20], 10]
+                }, {
+                    "type": "slider - height - Height",
+                    "progress": {
+                        "min": 2,
+                        "max": 20,
+                        "default": 10
+                    } // or "progress": [[2, 20], 10]
+                }], l2)
+
+                /*.add("AimBot Combat A", !!0, layout => client.hud.components.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
                 .add("HitAim Combat H", !!0, !!0, l2)
                 .add("AntiKnockback Combat", !!0, !!0, l2)
                 .add("HitBoost Combat H", !!0, !!0, l2)
                 .add("TpAura Combat T", !!0, !!0, l2)
-                .add("RatAura Combat R", !!0, !!0, l2);
+                .add("RatAura Combat R", !!0, !!0, l2);*/
 
                 let l3 = new LinearLayout(ctx);
                 l3.setOrientation(1);
 
-                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], layout => client.hud.components.slider(["airjump.velocity", "Velocity"], [[1, 5], 1], layout).slider(["airjump.jumppower", "Jump power"], [[1, 3], 1], layout), l3)
+                /*client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], layout => client.hud.components.slider(["airjump.velocity", "Velocity"], [[1, 5], 1], layout).slider(["airjump.jumppower", "Jump power"], [[1, 3], 1], layout), l3)
                 .add("Elevator Motion", [() => client.hud.elevator(), () => ELEVATOR.dismiss()], !!0, l3)
                 .add("Flight Motion F", [!!0, () => Player.setFlying(0)], layout => client.hud.components.module.setModeChanger("Flight", ["Vanilla", "Bounce", "Crouch"], layout), l3)
                 .add("Glide Motion G", !!0, !!0, l3)
@@ -553,12 +577,12 @@ print = p0 => {
                 .add("Tower Motion T", !!0, layout => client.hud.components.module.setModeChanger("Tower", ["Velocity", "Teleport"], layout).slider(["tower.powerlevel", "Power level"], [[1, 3], 1], layout), l3)
                 .add("Scaffold Motion S", !!0, layout => client.hud.components.module.setModeChanger("Scaffold", ["Velocity", "Teleport"], layout), l3)
                 .add("HighJump Motion", [!!0, () => Entity.removeEffect(getPlayerEnt(), 8)], !!0, l3)
-                .add("AntiGravity Motion A", !!0, !!0, l3);
+                .add("AntiGravity Motion A", !!0, !!0, l3);*/
 
                 let l4 = new LinearLayout(ctx);
                 l4.setOrientation(1);
 
-                client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
+                /*client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
                 .add("FastBreak Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 3)], !!0, l4)
                 .add("FullBright Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 16)], !!0, l4)
                 .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], layout => client.hud.components.slider(["fasteat.speed", "Speed"], [[2, 20], 2], layout), l4)
@@ -568,7 +592,7 @@ print = p0 => {
                 .add("Nuker Player N", !!0, layout => client.hud.components.slider(["nuker.delay", "Delay"], [[1, 5], 1], layout), l4)
                 .add("DestroyView Player D", !!0, layout => client.hud.components.slider(["destroyview.delay", "Delay"], [[1, 5], 1], layout), l4)
                 .add("NoBadEffects Player", !!0, !!0, l4)
-                .add("AntiAFK Player", !!0, layout => client.hud.components.slider(["antiafk.delay", "Delay (in seconds)"], [[1, 60], 5], layout), l4);
+                .add("AntiAFK Player", !!0, layout => client.hud.components.slider(["antiafk.delay", "Delay (in seconds)"], [[1, 60], 5], layout), l4);*/
 
                 l0.addView(s0);
                 GUI = new PopupWindow(l0, -2, -1, !0);
