@@ -532,9 +532,9 @@ print = p0 => {
                 let l2 = new LinearLayout(ctx);
                 l2.setOrientation(1);
 
-                client.hud.components.module.add("KillAura Combat K", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], layout => client.hud.components.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
+                client.hud.components.module.add("KillAura Combat K", !!0, layout => client.hud.components.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
                 .add("HitBoxes Combat H", !!0, layout => client.hud.components.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout), l2)
-                .add("AimBot Combat A", [() => print(ModPE.getLanguage() == "ru_RU" ? "Данный модуль временно отключен." : "This module is temporarily disabled."), !!0], layout => client.hud.components.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
+                .add("AimBot Combat A", !!0, layout => client.hud.components.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
                 .add("HitAim Combat H", !!0, !!0, l2)
                 .add("AntiKnockback Combat", !!0, !!0, l2)
                 .add("HitBoost Combat H", !!0, !!0, l2)
@@ -872,7 +872,7 @@ print = p0 => {
         //print("Build > <font color=#FF9800>48</font>");
     })();
 
-    /*core = new java.lang.Thread({
+    core = new java.lang.Thread({
         run(){
             android.os.Looper.prepare();
             new android.os.Handler().postDelayed({
@@ -908,7 +908,7 @@ print = p0 => {
             android.os.Looper.loop();
         }
     });
-    killaura.start();*/
+    killaura.start();
 
     entityHurtHook = (e0, e1) => {
         let modP = client.array[1][1]; // module properties
