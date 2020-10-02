@@ -182,8 +182,8 @@ print = p0 => {
                             l2.addView(s);
                             // a2(l3);
                             for(let i in a2){
-                                if(a2[i].type == "ModeChanger") client.hud.components.module.setModeChanger(a0[0], a2[i].modes, l3);
-                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + a2[i].type.split(" - ")[1], a2[i].type.split(" - ")[2]], [[a2[i].progress.min, a2[i].progress.max], a2[i].progress.default], l3);
+                                if(a2[i].type == "mode_changer") client.hud.components.module.setModeChanger(a0[0], a2[i].modes, l3);
+                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + "." + a2[i].type.split(" - ")[1], a2[i].type.split(" - ")[2]], [[a2[i].progress[0][0], a2[i].progress[0][1]], a2[i].progress[1]], l3);
                             };
                         };
 
@@ -394,45 +394,41 @@ print = p0 => {
                         p.setGravity(20);
                         p.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
                         p.setOnClickListener(function(){
-                            try{
-                                l0.removeView(p);
+                            l0.removeView(p);
 
-                                e.setInputType(2);
-                                e.setText(config(progress).toString());
-                                e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
-                                e.setHintTextColor(parseColor("#9E9E9E"));
-                                e.setTextSize(1, 10);
-                                e.setTextColor(-1);
-                                e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
-                                e.setPadding(dp(8), dp(8), dp(8), dp(8));
-                                e.setGravity(20);
-                                e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                                l0.addView(e);
+                            e.setInputType(2);
+                            e.setText(config(progress).toString());
+                            e.setHint(s0[1] + ": " + s1[0][0] + " - " + s1[0][1]);
+                            e.setHintTextColor(parseColor("#9E9E9E"));
+                            e.setTextSize(1, 10);
+                            e.setTextColor(-1);
+                            e.setLayoutParams(lp([-2, dp(30), 999], [8, 0, 4, 0]));
+                            e.setPadding(dp(8), dp(8), dp(8), dp(8));
+                            e.setGravity(20);
+                            e.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                            l0.addView(e);
 
-                                v.setText("ok");
-                                v.setTextSize(1, 10);
-                                v.setTextColor(-1);
-                                v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
-                                v.setPadding(dp(16), dp(8), dp(16), dp(8));
-                                v.setGravity(17);
-                                v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
-                                v.setOnClickListener(function(){
-                                    l0.removeView(e);
-                                    l0.removeView(v);
-                                    l0.addView(p);
-                                    s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
-                                });
-                                l0.addView(v);
+                            v.setText("ok");
+                            v.setTextSize(1, 10);
+                            v.setTextColor(-1);
+                            v.setLayoutParams(lp([-2, dp(30)], [4, 0, 8, 0]));
+                            v.setPadding(dp(16), dp(8), dp(16), dp(8));
+                            v.setGravity(17);
+                            v.setBackground(background(parseColor("#191919"), !!0, !!0, [30, 30, 30, 30]));
+                            v.setOnClickListener(function(){
+                                l0.removeView(e);
+                                l0.removeView(v);
+                                l0.addView(p);
+                                s.setProgress(config(progress, e.getText() < s1[0][0] ? s1[0][0] : e.getText() > s1[0][1] ? s1[0][1] : e.getText()));
+                            });
+                            l0.addView(v);
 
-                                e.requestFocus();
-                                /*e.postDelayed({
-                                    run(){
-                                        ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
-                                    }
-                                });*/
-                            }catch(e){
-                                print("Error(" + e.lineNumber + "): " + e.message);
-                            };
+                            e.requestFocus();
+                            /*e.postDelayed({
+                                run(){
+                                    ctx.getSystemService(android.content.Context.INPUT_METHOD_SERVICE).showSoftInput(e, 0);
+                                }
+                            });*/
                         });
                         l0.addView(p);
 
@@ -536,68 +532,102 @@ print = p0 => {
                 let l2 = new LinearLayout(ctx);
                 l2.setOrientation(1);
 
-                client.hud.components.module//.add("KillAura Combat K", !!0, layout => client.hud.components.slider(["killaura.cps", "CPS"], [[1, 20], 5], layout).slider(["killaura.range", "Range"], [[1, 15], 5], layout), l2)
-
-                //.add("HitBoxes Combat H", !!0, layout => client.hud.components.module.setModeChanger("HitBoxes", ["Pointed", "Auto"], layout).slider(["hitboxes.width", "Width"], [[2, 20], 10], layout).slider(["hitboxes.height", "Height"], [[2, 20], 10], layout), l2)
+                client.hud.components.module.add("KillAura Combat K", !!0, [{
+                    "type": "slider - cps - CPS",
+                    "progress": [[1, 20], 5]
+                }, {
+                    "type": "slider - range - Range",
+                    "progress": [[1, 15], 5]
+                }], l2)
                 .add("HitBoxes Combat H", !!0, [{
-                    "type": "ModeChanger",
+                    "type": "mode_changer",
                     "modes": ["Pointed", "Auto"]
                 }, {
                     "type": "slider - width - Width",
-                    "progress": {
-                        "min": 2,
-                        "max": 20,
-                        "default": 10
-                    } // or "progress": [[2, 20], 10]
+                    "progress": [[2, 20], 10]
                 }, {
                     "type": "slider - height - Height",
-                    "progress": {
-                        "min": 2,
-                        "max": 20,
-                        "default": 10
-                    } // or "progress": [[2, 20], 10]
+                    "progress": [[2, 20], 10]
                 }], l2)
-
-                /*.add("AimBot Combat A", !!0, layout => client.hud.components.slider(["aimbot.range", "Range"], [[1, 15], 5], layout), l2)
+                .add("AimBot Combat A", !!0, [{
+                    "type": "slider - range - Range",
+                    "progress": [[1, 15], 5]
+                }], l2)
                 .add("HitAim Combat H", !!0, !!0, l2)
                 .add("AntiKnockback Combat", !!0, !!0, l2)
                 .add("HitBoost Combat H", !!0, !!0, l2)
                 .add("TpAura Combat T", !!0, !!0, l2)
-                .add("RatAura Combat R", !!0, !!0, l2);*/
+                .add("RatAura Combat R", !!0, !!0, l2);
 
                 let l3 = new LinearLayout(ctx);
                 l3.setOrientation(1);
 
-                /*client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], layout => client.hud.components.slider(["airjump.velocity", "Velocity"], [[1, 5], 1], layout).slider(["airjump.jumppower", "Jump power"], [[1, 3], 1], layout), l3)
+                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], [{
+                    "type": "slider - velocity - Velocity",
+                    "progress": [[1, 5], 1]
+                }, {
+                    "type": "slider - jumppower - Jump power",
+                    "progress": [[1, 3], 1]
+                }], l3)
                 .add("Elevator Motion", [() => client.hud.elevator(), () => ELEVATOR.dismiss()], !!0, l3)
-                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], layout => client.hud.components.module.setModeChanger("Flight", ["Vanilla", "Bounce", "Crouch"], layout), l3)
+                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], [{
+                    "type": "mode_changer",
+                    "modes": ["Vanilla", "Bounce", "Crouch"]
+                }], l3)
                 .add("Glide Motion G", !!0, !!0, l3)
-                .add("JetPack Motion J", !!0, layout => client.hud.components.module.setModeChanger("JetPack", ["Velocity", "Teleport"], layout), l3)
+                .add("JetPack Motion J", !!0, [{
+                    "type": "mode_changer",
+                    "modes": ["Velocity", "Teleport"]
+                }], l3)
                 .add("AirSpeed Motion A", !!0, !!0, l3)
-                .add("Tower Motion T", !!0, layout => client.hud.components.module.setModeChanger("Tower", ["Velocity", "Teleport"], layout).slider(["tower.powerlevel", "Power level"], [[1, 3], 1], layout), l3)
-                .add("Scaffold Motion S", !!0, layout => client.hud.components.module.setModeChanger("Scaffold", ["Velocity", "Teleport"], layout), l3)
+                .add("Tower Motion T", !!0, [{
+                    "type": "mode_changer",
+                    "modes": ["Velocity", "Teleport"]
+                }, {
+                    "type": "slider - powerlevel - Power level",
+                    "progress": [[1, 3], 1]
+                }], l3)
+                .add("Scaffold Motion S", !!0, [{
+                    "type": "mode_changer",
+                    "modes": ["Velocity", "Teleport"]
+                }], l3)
                 .add("HighJump Motion", [!!0, () => Entity.removeEffect(getPlayerEnt(), 8)], !!0, l3)
-                .add("AntiGravity Motion A", !!0, !!0, l3);*/
+                .add("AntiGravity Motion A", !!0, !!0, l3);
 
                 let l4 = new LinearLayout(ctx);
                 l4.setOrientation(1);
 
-                /*client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
+                client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
                 .add("FastBreak Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 3)], !!0, l4)
                 .add("FullBright Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 16)], !!0, l4)
-                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], layout => client.hud.components.slider(["fasteat.speed", "Speed"], [[2, 20], 2], layout), l4)
+                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], [{
+                    "type": "slider - speed - Speed",
+                    "progress": [[2, 20], 2]
+                }], l4)
                 .add("TapTp Player T", !!0, !!0, l4)
                 .add("SafeWalk Player", !!0, !!0, l4)
-                .add("ChangeFov Player C", !!0, layout => client.hud.components.slider(["changefov.fov", "Fov"], [[20, 150], parseInt(client.optionsMCPE.get("gfx_field_of_view")) + 10], layout), l4)
-                .add("Nuker Player N", !!0, layout => client.hud.components.slider(["nuker.delay", "Delay"], [[1, 5], 1], layout), l4)
-                .add("DestroyView Player D", !!0, layout => client.hud.components.slider(["destroyview.delay", "Delay"], [[1, 5], 1], layout), l4)
+                .add("ChangeFov Player C", !!0, [{
+                    "type": "slider - fov - Fov",
+                    "progress": [[20, 150], 20]
+                }], l4)
+                .add("Nuker Player N", !!0, [{
+                    "type": "slider - delay - Delay",
+                    "progress": [[1, 5], 1]
+                }], l4)
+                .add("DestroyView Player D", !!0, [{
+                    "type": "slider - delay - Delay",
+                    "progress": [[1, 5], 1]
+                }], l4)
                 .add("NoBadEffects Player", !!0, !!0, l4)
-                .add("AntiAFK Player", !!0, layout => client.hud.components.slider(["antiafk.delay", "Delay (in seconds)"], [[1, 60], 5], layout), l4);*/
+                .add("AntiAFK Player", !!0, [{
+                    "type": "slider - delay - Delay (in seconds)",
+                    "progress": [[1, 60], 5]
+                }], l4);
 
                 l0.addView(s0);
                 GUI = new PopupWindow(l0, -2, -1, !0);
                 GUI.setAnimationStyle(16973910);
-                GUI.showAtLocation(ctx.getWindow().getDecorView(), 3, 0, 0); 
+                GUI.showAtLocation(ctx.getWindow().getDecorView(), 3, 0, 0);
             },
             settings(){
                 let dp = client.gui.dip2px, lp = client.gui.layoutParams;
