@@ -183,7 +183,7 @@ print = p0 => {
                             // a2(l3);
                             for(let i in a2){
                                 if(a2[i].type == "mode_changer") client.hud.components.module.setModeChanger(a0[0], a2[i].modes, l3);
-                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + "." + a2[i].type.split(" - ")[1], a2[i].type.split(" - ")[2]], [[a2[i].progress[0][0], a2[i].progress[0][1]], a2[i].progress[1]], l3);
+                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + "." + a2[i].type.split(".")[1], a2[i].label, [[a2[i].progress[0][0], a2[i].progress[0][1]], a2[i].progress[1]], l3);
                             };
                         };
 
@@ -532,27 +532,9 @@ print = p0 => {
                 let l2 = new LinearLayout(ctx);
                 l2.setOrientation(1);
 
-                client.hud.components.module.add("KillAura Combat K", !!0, [{
-                    "type": "slider - cps - CPS",
-                    "progress": [[1, 20], 5]
-                }, {
-                    "type": "slider - range - Range",
-                    "progress": [[1, 15], 5]
-                }], l2)
-                .add("HitBoxes Combat H", !!0, [{
-                    "type": "mode_changer",
-                    "modes": ["Pointed", "Auto"]
-                }, {
-                    "type": "slider - width - Width",
-                    "progress": [[2, 20], 10]
-                }, {
-                    "type": "slider - height - Height",
-                    "progress": [[2, 20], 10]
-                }], l2)
-                .add("AimBot Combat A", !!0, [{
-                    "type": "slider - range - Range",
-                    "progress": [[1, 15], 5]
-                }], l2)
+                client.hud.components.module.add("KillAura Combat K", !!0, [{ "type": "slider.cps", "label": "CPS", "progress": [[1, 20], 5] }, { "type": "slider.range", "label": "Range", "progress": [[1, 15], 5] }], l2)
+                .add("HitBoxes Combat H", !!0, [{ "type": "mode_changer", "modes": ["Pointed", "Auto"] }, { "type": "slider.width", "label": "Width", "progress": [[2, 20], 10] }, { "type": "slider.height", "label": "Height", "progress": [[2, 20], 10] }], l2)
+                .add("AimBot Combat A", !!0, [{ "type": "slider.range", "label": "Range", "progress": [[1, 15], 5] }], l2)
                 .add("HitAim Combat H", !!0, !!0, l2)
                 .add("AntiKnockback Combat", !!0, !!0, l2)
                 .add("HitBoost Combat H", !!0, !!0, l2)
@@ -562,35 +544,14 @@ print = p0 => {
                 let l3 = new LinearLayout(ctx);
                 l3.setOrientation(1);
 
-                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], [{
-                    "type": "slider - velocity - Velocity",
-                    "progress": [[1, 5], 1]
-                }, {
-                    "type": "slider - jumppower - Jump power",
-                    "progress": [[1, 3], 1]
-                }], l3)
+                client.hud.components.module.add("AirJump Motion", [() => client.hud.airjump(), () => AIRJUMP.dismiss()], [{ "type": "slider.velocity", "label": "Velocity", "progress": [[1, 5], 1] }, { "type": "slider.jumppower", "label": "Jump power", "progress": [[1, 3], 1] }], l3)
                 .add("Elevator Motion", [() => client.hud.elevator(), () => ELEVATOR.dismiss()], !!0, l3)
-                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], [{
-                    "type": "mode_changer",
-                    "modes": ["Vanilla", "Bounce", "Crouch"]
-                }], l3)
+                .add("Flight Motion F", [!!0, () => Player.setFlying(0)], [{ "type": "mode_changer", "modes": ["Vanilla", "Bounce", "Crouch"] }], l3)
                 .add("Glide Motion G", !!0, !!0, l3)
-                .add("JetPack Motion J", !!0, [{
-                    "type": "mode_changer",
-                    "modes": ["Velocity", "Teleport"]
-                }], l3)
+                .add("JetPack Motion J", !!0, [{ "type": "mode_changer", "modes": ["Velocity", "Teleport"] }], l3)
                 .add("AirSpeed Motion A", !!0, !!0, l3)
-                .add("Tower Motion T", !!0, [{
-                    "type": "mode_changer",
-                    "modes": ["Velocity", "Teleport"]
-                }, {
-                    "type": "slider - powerlevel - Power level",
-                    "progress": [[1, 3], 1]
-                }], l3)
-                .add("Scaffold Motion S", !!0, [{
-                    "type": "mode_changer",
-                    "modes": ["Velocity", "Teleport"]
-                }], l3)
+                .add("Tower Motion T", !!0, [{ "type": "mode_changer", "modes": ["Velocity", "Teleport"] }, { "type": "slider.powerlevel", "label": "Power level", "progress": [[1, 3], 1] }], l3)
+                .add("Scaffold Motion S", !!0, [{ "type": "mode_changer", "modes": ["Velocity", "Teleport"] }], l3)
                 .add("HighJump Motion", [!!0, () => Entity.removeEffect(getPlayerEnt(), 8)], !!0, l3)
                 .add("AntiGravity Motion A", !!0, !!0, l3);
 
@@ -600,29 +561,14 @@ print = p0 => {
                 client.hud.components.module.add("FastFall Player F", !!0, !!0, l4)
                 .add("FastBreak Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 3)], !!0, l4)
                 .add("FullBright Player", [!!0, () => Entity.removeEffect(getPlayerEnt(), 16)], !!0, l4)
-                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], [{
-                    "type": "slider - speed - Speed",
-                    "progress": [[2, 20], 2]
-                }], l4)
+                .add("FastEat Player", [!!0, () => client.utils.player.setSpeedEating(32)], [{ "type": "slider.speed", "label": "Speed", "progress": [[2, 20], 2] }], l4)
                 .add("TapTp Player T", !!0, !!0, l4)
                 .add("SafeWalk Player", !!0, !!0, l4)
-                .add("ChangeFov Player C", !!0, [{
-                    "type": "slider - fov - Fov",
-                    "progress": [[20, 150], 20]
-                }], l4)
-                .add("Nuker Player N", !!0, [{
-                    "type": "slider - delay - Delay",
-                    "progress": [[1, 5], 1]
-                }], l4)
-                .add("DestroyView Player D", !!0, [{
-                    "type": "slider - delay - Delay",
-                    "progress": [[1, 5], 1]
-                }], l4)
+                .add("ChangeFov Player C", !!0, [{ "type": "slider.fov", "label": "Fov", "progress": [[20, 150], 20] }], l4)
+                .add("Nuker Player N", !!0, [{ "type": "slider.delay", "label": "Delay", "progress": [[1, 5], 1] }], l4)
+                .add("DestroyView Player D", !!0, [{ "type": "slider.delay", "label": "Delay", "progress": [[1, 5], 1] }], l4)
                 .add("NoBadEffects Player", !!0, !!0, l4)
-                .add("AntiAFK Player", !!0, [{
-                    "type": "slider - delay - Delay (in seconds)",
-                    "progress": [[1, 60], 5]
-                }], l4);
+                .add("AntiAFK Player", !!0, [{ "type": "slider.delay", "label": "Delay (in seconds)", "progress": [[1, 60], 5] }], l4);
 
                 l0.addView(s0);
                 GUI = new PopupWindow(l0, -2, -1, !0);
