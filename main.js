@@ -183,7 +183,7 @@ print = p0 => {
                             // a2(l3);
                             for(let i in a2){
                                 if(a2[i].type == "mode_changer") client.hud.components.module.setModeChanger(a0[0], a2[i].modes, l3);
-                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + "." + a2[i].type.split(".")[1], a2[i].label, [[a2[i].progress[0][0], a2[i].progress[0][1]], a2[i].progress[1]], l3);
+                                if(a2[i].type.includes("slider")) client.hud.components.slider([a0[0].toLowerCase() + "." + a2[i].type.split(".")[1], a2[i].label], [[a2[i].progress[0][0], a2[i].progress[0][1]], a2[i].progress[1]], l3);
                             };
                         };
 
